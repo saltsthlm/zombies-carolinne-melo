@@ -3,12 +3,11 @@ import { ok } from "node:assert/strict";
 import { test } from "node:test";
 
 const createRoom = (capacity: number, zombies?: number) => {
-  const _capacity = capacity;
-  let _zombies = zombies || 0;
+	const _capacity = capacity;
+	let _zombies = zombies || 0;
 
-  return {
-    isFull: () => {
-			//full 1 === 1 || 1 === 2
+	return {
+		isFull: () => {
 			if (_capacity === 1 && _zombies === 1) {
 				return true;
 			}
@@ -18,7 +17,6 @@ const createRoom = (capacity: number, zombies?: number) => {
 			}
 
 			if (_capacity === 0) {
-				console.log("Room with no capacity, cannot fit any zombies");
 				return false;
 			}
 			if (_capacity === 1 && _zombies === 0) {
@@ -26,14 +24,13 @@ const createRoom = (capacity: number, zombies?: number) => {
 			}
 			return false;
 		},
-  };
+	};
 };
 
 test("room is full", () => {
 	const room = createRoom(1, 1);
 
 	const isRoomFull = room.isFull();
-	console.log("Room is full");
 
 	ok(isRoomFull);
 });
@@ -43,7 +40,6 @@ test("empty room that fits one zombie is not full", () => {
 
 	const isRoomFull = room.isFull();
 
-	console.log("Room fits one zombie and it is not full");
 	assert.strictEqual(isRoomFull, false);
 });
 
@@ -56,31 +52,27 @@ test("room with no capacity cannot fit any zombies", () => {
 });
 
 test("one-roomer becomes full when a zombie is added", () => {
-  const room = createRoom(1, 1);
+	const room = createRoom(1, 1);
 
 	const isRoomFull = room.isFull();
 
-  ok(isRoomFull);
-
+	ok(isRoomFull);
 });
 
 test("two-roomer is not full when a zombie is added", () => {
-  const room = createRoom(2, 1);
+	const room = createRoom(2, 1);
 
 	const isRoomFull = room.isFull();
 
-  assert.strictEqual(isRoomFull, false);
-
+	assert.strictEqual(isRoomFull, false);
 });
 
 test("second zombie consumes first zombie when added to a one-roomer", () => {
-  const room = createRoom(1, 2);
+	const room = createRoom(1, 2);
 
 	const isRoomFull = room.isFull();
 
-
-
-  assert.strictEqual(isRoomFull, true);
+	assert.strictEqual(isRoomFull, true);
 });
 
 // You are free to add more tests that you think are relevant!
