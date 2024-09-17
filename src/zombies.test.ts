@@ -4,7 +4,7 @@ import { test } from "node:test";
 
 const createRoom = (capacity: number, zombies?: number) => {
   const _capacity = capacity;
-  const _zombies = zombies;
+  const _zombies = zombies || 0;
 
   return {
     isFull: () => {
