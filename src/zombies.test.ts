@@ -9,7 +9,10 @@ const createRoom = (capacity: number, zombies?: number) => {
 	return {
 		isFull: () => {
 			if(_capacity === 1 && _zombies === 0) {
-				return false
+				return false;
+			}
+			if (_capacity === 0 && _zombies > 0) {
+				return false;
 			}
 			return true
 			
@@ -17,11 +20,10 @@ const createRoom = (capacity: number, zombies?: number) => {
 
 		addZombie: () => {
 			_zombies ++;
-			console.log(_zombies)
 		}
 	};
 };
-
+ 
 test("room is full", () => {
 	const room = createRoom(0);
 	const isRoomFull = room.isFull();
@@ -36,13 +38,13 @@ test("empty room that fits one zombie is not full", () => {
 	assert.strictEqual(isRoomFull, false);
 });
 
-// test("room with no capacity cannot fit any zombies", () => {
-// 	const room = createRoom(0);
-	
-// 	const isRoomFull = room.isFull();
+test("room with no capacity cannot fit any zombies", () => {
+	const room = createRoom(0);
+	room.addZombie();
+	const isRoomFull = room.isFull();
 
-// 	assert.strictEqual(isRoomFull, false);
-// });
+	assert.strictEqual(isRoomFull, false);
+});
 
 // test("one-roomer becomes full when a zombie is added", () => {
 // 	const room = createRoom(1, 1);
