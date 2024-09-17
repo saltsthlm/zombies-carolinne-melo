@@ -24,7 +24,7 @@ const createRoom = (capacity: number, zombies?: number) => {
   };
 };
 
-test("room is full", () => {
+test.skip("room is full", () => {
   const room = createRoom(0);
 
   const isRoomFull = room.isFull();
@@ -41,7 +41,7 @@ test("empty room that fits one zombie is not full", () => {
   assert.strictEqual(isRoomFull, false);
 });
 
-test.skip("room with no capacity cannot fit any zombies", () => {
+test("room with no capacity cannot fit any zombies", () => {
   const room = createRoom(0);
 
 	const isRoomFull = room.isFull();
@@ -50,9 +50,18 @@ test.skip("room with no capacity cannot fit any zombies", () => {
 
 });
 
-test.skip("one-roomer becomes full when a zombie is added", () => {});
+test("one-roomer becomes full when a zombie is added", () => {
+  const room = createRoom(1, 1);
 
-test.skip("two-roomer is not full when a zombie is added", () => {});
+	const isRoomFull = room.isFull();
+
+  ok(isRoomFull);
+
+});
+
+test.skip("two-roomer is not full when a zombie is added", () => {
+  
+});
 
 test.skip("second zombie consumes first zombie when added to a one-roomer", () => {});
 
